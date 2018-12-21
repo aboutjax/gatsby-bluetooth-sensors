@@ -4,6 +4,7 @@ module.exports = {
     description: `Test you bluetooth sensors`,
     author: `@p0pmaker`,
   },
+  pathPrefix: '/gatsby-bluetooth-sensors',
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
