@@ -19,6 +19,7 @@ class BluetoothHeartRate extends Component {
           },
         ],
       },
+      highestHearRate: 0,
     }
   }
 
@@ -26,6 +27,9 @@ class BluetoothHeartRate extends Component {
 
   handleCharacteristicValueChanged = event => {
     let value = event.target.value.getUint8(1)
+
+    let dataArray = this.state.data.datasets[0].data
+    let highestData = Math.max(...dataArray)
 
     this.setState({
       currentHeartRate: value,
@@ -42,6 +46,7 @@ class BluetoothHeartRate extends Component {
           },
         ],
       },
+      highestHearRate: highestData,
     })
   }
 
@@ -78,8 +83,11 @@ class BluetoothHeartRate extends Component {
       <div>
         <div className="flex justify-between items-center">
           <header>
-            <h2>Heart Rate</h2>
+            <h2>Current Heart Rate</h2>
             <h1>{this.state.currentHeartRate}</h1>
+
+            <h2>Max Heart Rate</h2>
+            <h1>{this.state.highestHearRate}</h1>
           </header>
           <button
             className="f6 link dim br1 ph3 pv2 mb2 dib white bg-black bn"
